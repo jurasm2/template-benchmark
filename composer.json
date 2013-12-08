@@ -1,0 +1,7 @@
+{
+    "require": {
+        "twig/twig": "v1.14.2",
+        "smarty/smarty": "v3.1.15",
+        "jurasm2/nette": "dev-feature/latte-extract"
+    }
+}

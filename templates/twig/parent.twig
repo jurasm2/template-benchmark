@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}{{title}}{% endblock %}</title>
+    </head>
+    <body>
+        <h1>{{engine|upper}}</h1>
+        {% block content %}
+            Default content
+        {% endblock %}
+    </body>
+</html>

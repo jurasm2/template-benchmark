@@ -1,0 +1,18 @@
+{% extends "parent.twig" %}
+
+{% block title %}{{ engine }} | {{ parent() }}{% endblock %}
+
+{% block content %}
+    {{ content }}
+    {{ xssContent }}
+
+    <hr />
+
+    <script type="text/javascript">
+        var userId = '{{userId|e('js')}}';
+    </script>
+    <p style="color: {{color|e('css')}};" title="{{attrib|e('html_attr')}}">
+        <a href="" onclick="return !confirm('{{message|e('js')}}');">{{desc}}</a>
+    </p>
+    <!-- Executed in: {{time}} s -->
+{% endblock %}

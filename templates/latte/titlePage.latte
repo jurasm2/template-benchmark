@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Template benchmark</title>
+    </head>
+    <body>
+        <h1>Template benchmark</h1>
+        <hr />
+        <ul n:if="$engines">
+            <li n:foreach="$engines as $engine">
+                <a href="?engine={$engine|url}" target="_blank">{$engine|upper}</a>
+            </li>
+        </ul>
+    </body>
+</html>
