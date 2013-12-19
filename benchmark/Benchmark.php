@@ -1,5 +1,7 @@
 <?php
 
+
+
 /**
  * Benchmark for template engines
  */
@@ -26,6 +28,12 @@ class Benchmark {
     protected static $templateDir;
 
     /**
+     *
+     * @var string
+     */
+    protected static $pluginsDir;
+
+    /**
      * Constructor
      * @param string $appDir
      */
@@ -33,6 +41,10 @@ class Benchmark {
         self::$appDir = $appDir;
         self::$cacheDir = $appDir . '/cache';
         self::$templateDir = $appDir . '/templates';
+        self::$pluginsDir = $appDir . '/Plugins';
+
+//        require self::$pluginsDir . '/Smarty/MyPlugin.php';
+//        require self::$pluginsDir . '/Twig/MyPlugin.php';
     }
 
     /**
@@ -45,8 +57,14 @@ class Benchmark {
             'debug' => true,    // invalidate compiled template on modify the source
             'cache' => self::$cacheDir . '/twig/',
         ));
+
+        $class = new \Plugins\Twig\MyPlugin();
+        echo get_class($class);
+        die();
+        $twig->addFilter('changeText', array($class, 'changeText'));
         return $twig;
     }
+
 
     /**
      * Init Smarty template engine
@@ -56,8 +74,13 @@ class Benchmark {
         $smarty = new Smarty();
         $smarty->setTemplateDir(self::$templateDir . '/smarty/');
         $smarty->setCompileDir(self::$cacheDir . '/smarty/');
+        //$smarty->addPluginsDir(self::$pluginsDir . '/smarty/');
+
+        $class = new \Plugins\Smarty\MyPlugin();
+        $smarty->registerPlugin('modifier', 'changeText', array($class, 'changeText'));
+        //$smarty->registerPlugin('modifier', 'changeText', array('\\Plugins\\Smarty\\MyPlugin', 'changeText'));
         // enable default escaping
-        $smarty->default_modifiers = array('escape:"htmlall"');
+        $smarty->default_modifiers = array('escape:"html"');
         return $smarty;
     }
 
@@ -107,6 +130,8 @@ class Benchmark {
             'color' => $dangerousString,
             'time' => $dangerousString,
             'attrib' => $dangerousString,
+
+            'pluginText' => '<b>This is plugin text</b>',
         );
 
         switch ($templateEngine) {

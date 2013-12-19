@@ -9,10 +9,16 @@
     <hr />
 
     <script type="text/javascript">
-        var userId = {$userId};
+        var userId = '{$userId|escape:'javascript'}';
     </script>
     <p style="color: {$color};" title="{$attrib}">
-        <a href="" onclick="return !confirm({$message});">{$desc}</a>
+        <a href="" onclick="return !confirm('{$message|escape:'javascript'}');">{$desc}</a>
     </p>
     <!-- Executed in: {$time} s -->
+    
+    <hr />
+    <h2>Using plugins</h2>
+    
+    {$pluginText|changeText}
+    
 {/block}
