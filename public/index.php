@@ -1,8 +1,6 @@
 <?php
-    $loader = require '../vendor/autoload.php';
-//    $loader->add('', __DIR__.'/../benchmark/');
-//    $loader->add('', __DIR__.'/../plugins/');
 
+    $loader = require '../vendor/autoload.php';
     $configurator = new Nette\Configurator;
 
     // Enable Nette Debugger for error visualisation & logging
@@ -18,8 +16,6 @@
             ->addDirectory(__DIR__.'/../plugins/')
             ->register();
 
-
-    //Nette\Diagnostics\Debugger::enable();
     $benchmark = new \Benchmark(dirname(__DIR__));
     $selectedEngine = isset($_GET['engine']) ? $_GET['engine'] : null;
 

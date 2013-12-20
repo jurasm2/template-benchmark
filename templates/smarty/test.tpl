@@ -14,11 +14,12 @@
     <p style="color: {$color};" title="{$attrib}">
         <a href="" onclick="return !confirm('{$message|escape:'javascript'}');">{$desc}</a>
     </p>
-    <!-- Executed in: {$time} s -->
-    
+    <!-- Executed in: {$time} s -->    
     <hr />
     <h2>Using plugins</h2>
     
-    {$pluginText|changeText}
+    escaped: {$pluginText|changeText}<br />
+    nofilter: {$pluginText|changeText nofilter}
+     
     
 {/block}

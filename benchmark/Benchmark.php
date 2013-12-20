@@ -42,9 +42,6 @@ class Benchmark {
         self::$cacheDir = $appDir . '/cache';
         self::$templateDir = $appDir . '/templates';
         self::$pluginsDir = $appDir . '/Plugins';
-
-//        require self::$pluginsDir . '/Smarty/MyPlugin.php';
-//        require self::$pluginsDir . '/Twig/MyPlugin.php';
     }
 
     /**
@@ -59,9 +56,7 @@ class Benchmark {
         ));
 
         $class = new \Plugins\Twig\MyPlugin();
-        echo get_class($class);
-        die();
-        $twig->addFilter('changeText', array($class, 'changeText'));
+        $twig->addFilter(new Twig_SimpleFilter('changeText', array($class, 'changeText')));
         return $twig;
     }
 
@@ -92,6 +87,10 @@ class Benchmark {
         $template = new Nette\Templating\FileTemplate;
         $template->setCacheStorage(new Nette\Caching\Storages\PhpFileStorage(self::$cacheDir . '/latte/'));
         $template->registerHelperLoader('Nette\Templating\Helpers::loader');
+
+        $class = new \Plugins\Latte\MyPlugin();
+        $template->registerHelper('changeText', array($class, 'changeText'));
+
         $template->onPrepareFilters[] = function ($template) {
             $template->registerFilter(new Nette\Latte\Engine);
         };

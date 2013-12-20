@@ -14,10 +14,11 @@
     <p style="color: {{color|e('css')}};" title="{{attrib|e('html_attr')}}">
         <a href="" onclick="return !confirm('{{message|e('js')}}');">{{desc}}</a>
     </p>
-    <!-- Executed in: {{time}} s -->
-    
+    <!-- Executed in: {{time}} s -->    
     <hr />
+    <h2>Using plugins</h2>    
     
-    {{pluginText|changeText}}
+    escaped: {{pluginText|changeText}}<br />
+    nofilter: {{pluginText|changeText|raw}}
     
 {% endblock %}

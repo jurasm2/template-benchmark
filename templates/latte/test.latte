@@ -15,5 +15,10 @@
         <a href="" onclick="return !confirm({$message});">{$desc}</a>
     </p>
     <!-- Executed in: {$time} s -->
-
+    <hr />
+    <h2>Using plugins</h2>
+        
+    escaped: {$pluginText|changeText}<br />
+    nofilter: {!$pluginText|changeText}
+    
 {/block}

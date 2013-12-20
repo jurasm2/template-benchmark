@@ -4,7 +4,7 @@ namespace Plugins\Smarty;
 
 class MyPlugin {
 
-    public function changeText($string, $smarty) {
+    public function changeText($string) {
         return $string;
     }
 
